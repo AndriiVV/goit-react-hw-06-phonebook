@@ -1,19 +1,22 @@
 import styles from "./Filter.module.css"
-import PropTypes from "prop-types";
 
-const Filter = ({handleFilter}) => (
-  <>
-    <p className={styles.title}>Find contacts by Name</p>
-    <input
-      type="text"
-      onChange={handleFilter}
-      className={styles.input}
-    />
-  </>
-)
+import { useDispatch } from "react-redux";
+import { phonebookFilter } from "../../redux/phonebookActions";
 
-Filter.propTypes = {
-  handleFilter: PropTypes.func.isRequired,
+const Filter = () => {
+
+  const dispatch = useDispatch();
+
+  return (
+    <>
+      <p className={styles.title}>Find contacts by Name</p>
+      <input
+        type="text"
+        onChange={(event) => dispatch(phonebookFilter(event))}
+        className={styles.input}
+      />
+    </>
+  )
 }
 
 export default Filter;
